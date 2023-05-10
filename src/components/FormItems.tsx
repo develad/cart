@@ -46,6 +46,7 @@ function FormItems({ handleAddItem }: handleAddItemProp) {
         className='rounded py-1 px-2 text-black'
         value={quantity}
         min='1'
+        required
       />
       <button
         type='submit'
