@@ -8,8 +8,8 @@ const ListItem: React.FC<handlePressProp> = ({ item, handlePress }) => {
     <li
       className={
         item.isChecked
-          ? " flex items-center text-2xl my-2 line-through opacity-50 "
-          : " flex items-center text-2xl my-2"
+          ? " flex items-center text-4xl my-2 line-through opacity-50 "
+          : " flex items-center text-4xl my-2"
       }
     >
       <input
@@ -21,7 +21,7 @@ const ListItem: React.FC<handlePressProp> = ({ item, handlePress }) => {
       />
       <span
         dir='ltr'
-        className='font-black'
+        className='font-black flex-1'
       >
         {item.quantity} x {item.name}
       </span>

@@ -17,7 +17,7 @@ const Modal = ({ setIsModalOpen, setListItems }: modalProps) => {
       dir='rtl'
       className='absolute top-0 left-0 right-0 bottom-0 bg-black/80 z-50 flex items-center justify-center min-h-screen'
     >
-      <div className='w-5/6 md:w-[500px] h-[500px] border-4 border-white rounded-3xl bg-zinc-600 flex flex-col items-center p-16'>
+      <div className='w-5/6 md:w-[500px] h-[500px] border-4 border-white rounded-3xl bg-zinc-700 flex flex-col items-center p-16'>
         <p className='text-4xl font-black text-center mb-8'>למחוק את הרשימה?</p>
         <div className='flex items-center gap-4 md:gap-8 w-full mb-16'>
           <button

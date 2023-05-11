@@ -26,7 +26,7 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
     <form
       dir='rtl'
       onSubmit={handleSubmit}
-      className='w-full md:w-[500px] h-60 bg-gray-700 rounded-2xl p-4 flex flex-col justify-between mt-4 mb-8 mx-auto border-4 border-white'
+      className='w-11/12  h-60 bg-gray-700 rounded-2xl p-4 flex flex-col justify-between mt-4 mb-8 mx-auto border-4 border-white'
     >
       <label
         htmlFor='name'
