@@ -4,11 +4,14 @@ import ListItems from "./components/ListItems";
 import FormItems from "./components/FormItems";
 import TrashBtn from "./components/TrashBtn";
 import AllDone from "./components/AllDone";
+import Modal from "./components/Modal";
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
     localStorage.items ? JSON.parse(localStorage.items) : [],
   );
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.items = JSON.stringify(listItems);
@@ -51,24 +54,28 @@ function App() {
     }
   };
 
-  const handleClear = () => {
-    if (window.confirm("למחוק את הרשימה?")) {
-      setListItems([]);
-    }
-  };
-
   return (
-    <div className='min-h-screen bg-zinc-800  text-white '>
-      <div className='mx-auto container p-8  md:w-[600px]'>
-        <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
-        <FormItems handleAddItem={handleAddItem} />
-        <ListItems
-          items={listItems}
-          handlePress={handlePress}
-        />
-        {listItems.length !== 0 && <TrashBtn handleClear={handleClear} />}
+    <div className='relative'>
+      <div className='min-h-screen bg-zinc-800  text-white flex flex-col items-center justify-between '>
+        <div className='mx-auto container p-8  md:w-[600px]'>
+          <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
+          <FormItems handleAddItem={handleAddItem} />
+          <ListItems
+            items={listItems}
+            handlePress={handlePress}
+          />
+          {listItems.length !== 0 && (
+            <TrashBtn setIsModalOpen={setIsModalOpen} />
+          )}
+        </div>
+        <AllDone items={listItems} />
+        {isModalOpen && (
+          <Modal
+            setIsModalOpen={setIsModalOpen}
+            setListItems={setListItems}
+          />
+        )}
       </div>
-      <AllDone items={listItems} />
     </div>
   );
 }

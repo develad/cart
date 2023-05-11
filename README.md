@@ -10,12 +10,9 @@
 - Typescript
 - Tailwindcss
 
-## Screen Shots:
-
-<br/>
+## Screenshots:
 
 ![](https://raw.githubusercontent.com/develad/cart/main/public/images/image_02.png)
-<br/>
 <br/>
 
 ![](https://raw.githubusercontent.com/develad/cart/main/public/images/image_01.png)

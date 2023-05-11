@@ -7,7 +7,6 @@ function FormItems({ handleAddItem }: handleAddItemProp) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(name, quantity);
     handleAddItem(name, quantity);
     setName("");
     setQuantity(1);

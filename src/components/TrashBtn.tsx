@@ -1,13 +1,13 @@
 import trash from "../assets/trash.svg";
 
 interface trashProps {
-  handleClear: () => void;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TrashBtn = ({ handleClear }: trashProps) => {
+const TrashBtn = ({ setIsModalOpen }: trashProps) => {
   return (
     <div
-      onClick={handleClear}
+      onClick={() => setIsModalOpen(true)}
       className=' fixed bottom-[10px] left-4 md:left-1/3 grid place-items-center bg-red-400 rounded-2xl p-2 border-4 border-white hover:cursor-pointer z-10'
     >
       <img
