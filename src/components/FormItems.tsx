@@ -7,18 +7,20 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
 
   const textRef = useRef<HTMLInputElement>(null);
 
+  const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    if (textRef.current) {
+      textRef.current.focus();
+    }
+  }, [totalQuantity]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleAddItem(name, quantity);
     setName("");
     setQuantity(1);
   };
-
-  useEffect(() => {
-    if (textRef.current) {
-      textRef.current.focus();
-    }
-  }, [items.length]);
 
   return (
     <form
@@ -56,6 +58,7 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
         className='rounded py-1 px-2 text-black outline-yellow-300 text-lg'
         value={quantity}
         min='1'
+        max='9999999'
         required
       />
       <button
