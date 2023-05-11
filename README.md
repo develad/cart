@@ -13,6 +13,7 @@
 ## Screenshots:
 
 ![](https://raw.githubusercontent.com/develad/cart/main/public/images/image_02.png)
-<br/>
 
 ![](https://raw.githubusercontent.com/develad/cart/main/public/images/image_01.png)
+
+![](https://raw.githubusercontent.com/develad/cart/main/public/images/image_03.png)
