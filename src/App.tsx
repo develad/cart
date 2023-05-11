@@ -55,27 +55,26 @@ function App() {
   };
 
   return (
-    <div className='relative'>
-      <div className='min-h-screen bg-zinc-800  text-white flex flex-col items-center justify-between '>
-        <div className='mx-auto container p-8  md:w-[600px]'>
-          <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
-          <FormItems handleAddItem={handleAddItem} />
-          <ListItems
-            items={listItems}
-            handlePress={handlePress}
-          />
-          {listItems.length !== 0 && (
-            <TrashBtn setIsModalOpen={setIsModalOpen} />
-          )}
-        </div>
+    <div className='min-h-screen bg-zinc-800  text-white flex flex-col items-center justify-between relative '>
+      <div className='mx-auto container p-8  md:w-[600px]'>
+        <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
+        <FormItems
+          handleAddItem={handleAddItem}
+          items={listItems}
+        />
+        <ListItems
+          items={listItems}
+          handlePress={handlePress}
+        />
+        {listItems.length !== 0 && <TrashBtn setIsModalOpen={setIsModalOpen} />}
         <AllDone items={listItems} />
-        {isModalOpen && (
-          <Modal
-            setIsModalOpen={setIsModalOpen}
-            setListItems={setListItems}
-          />
-        )}
       </div>
+      {isModalOpen && (
+        <Modal
+          setIsModalOpen={setIsModalOpen}
+          setListItems={setListItems}
+        />
+      )}
     </div>
   );
 }

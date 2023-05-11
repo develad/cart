@@ -16,8 +16,9 @@ interface handleItemPressProp {
   handlePress: (id: number, btnState: boolean) => void;
 }
 
-interface handleAddItemProp {
+interface handleAddItemProps {
   handleAddItem: (name: string, quantity: number) => void;
+  items: listItem[];
 }
 
 interface handlePressProp {
@@ -29,7 +30,7 @@ export type {
   listItem,
   itemsProps,
   itemProp,
-  handleAddItemProp,
+  handleAddItemProps,
   handlePressProp,
   handleItemPressProp,
 };

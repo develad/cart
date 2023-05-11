@@ -16,7 +16,7 @@ const ListItem: React.FC<handlePressProp> = ({ item, handlePress }) => {
         type='checkbox'
         checked={item.isChecked}
         onChange={handleChecked}
-        className='mx-4 appearance-none checked:bg-emerald-400 rounded-full border-2 border-white'
+        className='mx-4 appearance-none checked:bg-emerald-400 rounded-full border-2 border-white cursor-pointer'
         style={{ width: "30px", height: "30px" }}
       />
       <span
