@@ -19,12 +19,9 @@ const ListItem: React.FC<handlePressProp> = ({ item, handlePress }) => {
         className='mx-4 appearance-none checked:bg-emerald-400 rounded-full border-2 border-white cursor-pointer'
         style={{ width: "30px", height: "30px" }}
       />
-      <span
-        dir='ltr'
-        className='font-black flex-1'
-      >
-        {item.quantity} x {item.name}
-      </span>
+      <p className='font-black flex-1 '>
+        {item.name} <span dir='ltr'>{item.quantity} x</span>
+      </p>
     </li>
   );
 };
