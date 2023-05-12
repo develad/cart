@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className='min-h-screen bg-zinc-800  text-white flex flex-col items-center justify-between relative '>
-      <div className='mx-auto container px-4 pt-8 pb-[60px] md:w-[600px] '>
+      <div className='mx-auto container px-4 pt-8 mb-[60px] pb-[60px] md:w-[600px] '>
         <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
         <FormItems
           handleAddItem={handleAddItem}
@@ -67,7 +67,6 @@ function App() {
           handlePress={handlePress}
         />
         {listItems.length !== 0 && <TrashBtn setIsModalOpen={setIsModalOpen} />}
-        <AllDone items={listItems} />
       </div>
       {isModalOpen && (
         <Modal
@@ -75,6 +74,7 @@ function App() {
           setListItems={setListItems}
         />
       )}
+      <AllDone items={listItems} />
     </div>
   );
 }
