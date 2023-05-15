@@ -1,7 +1,7 @@
-import { itemsProps } from "../types/listTypes";
-import cat from "../assets/cat.gif";
+import { itemsProps } from '../types/listTypes';
+import cat from '../assets/cat.gif';
 
-const AllDone = ({ items }: itemsProps) => {
+const AllDone = ({ items, isLightMode }: itemsProps) => {
   const isDone =
     items &&
     items.length !== 0 &&
@@ -10,7 +10,13 @@ const AllDone = ({ items }: itemsProps) => {
   return (
     <div className='fixed bottom-0 right-0  grid place-items-end mt-8'>
       {isDone ? (
-        <div className='flex items-end justify-end transition-opacity opacity-100 bg-zinc-800 w-screen pr-4 md:pr-44 lg:pr-[35rem]'>
+        <div
+          className={`flex items-end justify-end transition-opacity opacity-100 ${
+            isLightMode
+              ? 'bg-green-400 border-t-4 border-gray-950'
+              : 'bg-zinc-800'
+          } w-screen pr-4 md:pr-44 lg:pr-[35rem]`}
+        >
           <h1 className='text-[2rem] font-black pb-6 mr-4'>הכל הושלם</h1>
           <img
             src={cat}

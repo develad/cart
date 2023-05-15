@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { listItem } from "./types/listTypes";
-import ListItems from "./components/ListItems";
-import FormItems from "./components/FormItems";
-import TrashBtn from "./components/TrashBtn";
-import AllDone from "./components/AllDone";
-import Modal from "./components/Modal";
+import { useState, useEffect } from 'react';
+import { listItem } from './types/listTypes';
+import ListItems from './components/ListItems';
+import FormItems from './components/FormItems';
+import TrashBtn from './components/TrashBtn';
+import AllDone from './components/AllDone';
+import Modal from './components/Modal';
+import ToggleSwitch from './components/ToggleSwitch';
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
@@ -12,6 +13,7 @@ function App() {
   );
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isLightMode, setIsLightMode] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.items = JSON.stringify(listItems);
@@ -55,26 +57,45 @@ function App() {
   };
 
   return (
-    <div className='min-h-screen bg-zinc-800  text-white flex flex-col items-center justify-between relative '>
-      <div className='mx-auto container px-4 pt-8 mb-[60px] pb-[60px] md:w-[600px] '>
+    <div
+      className={`min-h-screen ${
+        isLightMode ? 'text-gray-950  bg-[wheat]' : 'bg-zinc-800  text-white'
+      } flex flex-col items-center justify-between relative`}
+    >
+      <ToggleSwitch
+        isLightMode={isLightMode}
+        setIsLightMode={setIsLightMode}
+      />
+      <div className='mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] '>
         <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
         <FormItems
           handleAddItem={handleAddItem}
           items={listItems}
+          isLightMode={isLightMode}
         />
         <ListItems
           items={listItems}
           handlePress={handlePress}
+          isLightMode={isLightMode}
         />
-        {listItems.length !== 0 && <TrashBtn setIsModalOpen={setIsModalOpen} />}
+        {listItems.length !== 0 && (
+          <TrashBtn
+            setIsModalOpen={setIsModalOpen}
+            isLightMode={isLightMode}
+          />
+        )}
       </div>
       {isModalOpen && (
         <Modal
           setIsModalOpen={setIsModalOpen}
           setListItems={setListItems}
+          isLightMode={isLightMode}
         />
       )}
-      <AllDone items={listItems} />
+      <AllDone
+        items={listItems}
+        isLightMode={isLightMode}
+      />
     </div>
   );
 }

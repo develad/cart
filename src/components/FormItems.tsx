@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import { handleAddItemProps } from "../types/listTypes";
+import { useState, useEffect, useRef } from 'react';
+import { handleAddItemProps } from '../types/listTypes';
 
-function FormItems({ handleAddItem, items }: handleAddItemProps) {
-  const [name, setName] = useState("");
+function FormItems({ handleAddItem, items, isLightMode }: handleAddItemProps) {
+  const [name, setName] = useState('');
   const [quantity, setQuantity] = useState(1);
 
   const textRef = useRef<HTMLInputElement>(null);
@@ -18,7 +18,7 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleAddItem(name, quantity);
-    setName("");
+    setName('');
     setQuantity(1);
   };
 
@@ -26,7 +26,11 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
     <form
       dir='rtl'
       onSubmit={handleSubmit}
-      className='w-11/12  h-60 bg-gray-700 rounded-2xl p-4 flex flex-col justify-between mt-4 mb-8 mx-auto border-4 border-white'
+      className={`w-11/12  h-60 ${
+        isLightMode
+          ? 'bg-green-400 border-gray-950'
+          : 'bg-gray-700 border-white'
+      } rounded-2xl p-4 flex flex-col justify-between mt-4 mb-8 mx-auto border-4`}
     >
       <label
         htmlFor='name'
@@ -63,7 +67,9 @@ function FormItems({ handleAddItem, items }: handleAddItemProps) {
       />
       <button
         type='submit'
-        className='rounded bg-cyan-400 font-bold p-2 mt-4 text-lg disabled:opacity-50'
+        className={`rounded ${
+          isLightMode ? 'bg-yellow-400' : 'bg-cyan-400'
+        } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
         disabled={name.trim().length === 0}
       >
         הוספה לרשימה
