@@ -16,18 +16,25 @@ interface handleItemPressProp {
   items: listItem[];
   handlePress: (id: number, btnState: boolean) => void;
   isLightMode: boolean;
+  isEditing: boolean;
+  editItem: listItem | null;
 }
 
 interface handleAddItemProps {
   handleAddItem: (name: string, quantity: number) => void;
+  handleEditItem: (name: string, quantity: number) => void;
   items: listItem[];
   isLightMode: boolean;
+  isEditing: boolean;
+  editItem: listItem | null;
 }
 
 interface handlePressProp {
   handlePress: (id: number, btnState: boolean) => void;
   item: listItem;
   isLightMode: boolean;
+  isEditing: boolean;
+  editItem: listItem | null;
 }
 
 export type {
