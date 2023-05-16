@@ -6,6 +6,7 @@ import TrashBtn from './components/TrashBtn';
 import AllDone from './components/AllDone';
 import Modal from './components/Modal';
 import ToggleSwitch from './components/ToggleSwitch';
+import WhatsAppBtn from './components/WhatsAppBtn';
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
@@ -79,10 +80,16 @@ function App() {
           isLightMode={isLightMode}
         />
         {listItems.length !== 0 && (
-          <TrashBtn
-            setIsModalOpen={setIsModalOpen}
-            isLightMode={isLightMode}
-          />
+          <>
+            <TrashBtn
+              setIsModalOpen={setIsModalOpen}
+              isLightMode={isLightMode}
+            />
+            <WhatsAppBtn
+              listItems={listItems}
+              isLightMode={isLightMode}
+            />
+          </>
         )}
       </div>
       {isModalOpen && (
