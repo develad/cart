@@ -8,6 +8,8 @@ import Modal from "./components/Modal";
 import ToggleSwitch from "./components/ToggleSwitch";
 import WhatsAppBtn from "./components/WhatsAppBtn";
 import { useTranslation } from "react-i18next";
+import israelFlag from "./assets/Israel_flag.svg";
+import usUKFlag from "./assets/us_uk_flag.svg";
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
@@ -73,12 +75,16 @@ function App() {
       } flex flex-col items-center justify-between relative`}
     >
       <ToggleSwitch isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
-      <input
-        type="checkbox"
-        id="checkbox"
-        className="toggle-switch top-4 left-[10%]"
-        onChange={changeDirection}
-      />
+      <div
+        onClick={changeDirection}
+        className="absolute top-4 left-[40%] -translate-x-1/2"
+      >
+        <img
+          src={direction === "ltr" ? israelFlag : usUKFlag}
+          alt="change language icon"
+        />
+      </div>
+
       <div className="mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] ">
         <h1 className="text-4xl text-center font-black ">{t("title")}</h1>
         <FormItems
