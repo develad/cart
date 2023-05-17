@@ -78,6 +78,7 @@ function App() {
       <div
         onClick={changeDirection}
         className="absolute top-4 left-[40%] -translate-x-1/2"
+        role="button"
       >
         <img
           src={direction === "ltr" ? israelFlag : usUKFlag}
