@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
-import { listItem } from './types/listTypes';
-import ListItems from './components/ListItems';
-import FormItems from './components/FormItems';
-import TrashBtn from './components/TrashBtn';
-import AllDone from './components/AllDone';
-import Modal from './components/Modal';
-import ToggleSwitch from './components/ToggleSwitch';
-import WhatsAppBtn from './components/WhatsAppBtn';
+import { useState, useEffect } from "react";
+import { listItem } from "./types/listTypes";
+import ListItems from "./components/ListItems";
+import FormItems from "./components/FormItems";
+import TrashBtn from "./components/TrashBtn";
+import AllDone from "./components/AllDone";
+import Modal from "./components/Modal";
+import ToggleSwitch from "./components/ToggleSwitch";
+import WhatsAppBtn from "./components/WhatsAppBtn";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
-    localStorage.items ? JSON.parse(localStorage.items) : [],
+    localStorage.items ? JSON.parse(localStorage.items) : []
   );
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isLightMode, setIsLightMode] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     localStorage.items = JSON.stringify(listItems);
@@ -22,7 +25,7 @@ function App() {
 
   const handlePress = (id: number, btnState: boolean) => {
     const arr = listItems.map((item) =>
-      item.id === id ? { ...item, isChecked: btnState } : item,
+      item.id === id ? { ...item, isChecked: btnState } : item
     );
     setListItems(arr);
   };
@@ -30,7 +33,7 @@ function App() {
   const handleAddItem = (name: string, quantity: number) => {
     const itemIndex = listItems.findIndex(
       (itemName) =>
-        itemName.name.trim().toLowerCase() === name.trim().toLowerCase(),
+        itemName.name.trim().toLowerCase() === name.trim().toLowerCase()
     );
     if (itemIndex === -1) {
       setListItems((prev) => [
@@ -60,15 +63,12 @@ function App() {
   return (
     <div
       className={`min-h-screen ${
-        isLightMode ? 'text-gray-950  bg-[wheat]' : 'bg-zinc-800  text-white'
+        isLightMode ? "text-gray-950  bg-[wheat]" : "bg-zinc-800  text-white"
       } flex flex-col items-center justify-between relative`}
     >
-      <ToggleSwitch
-        isLightMode={isLightMode}
-        setIsLightMode={setIsLightMode}
-      />
-      <div className='mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] '>
-        <h1 className='text-4xl text-center font-black '>🍪 עגלת קניות</h1>
+      <ToggleSwitch isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
+      <div className="mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] ">
+        <h1 className="text-4xl text-center font-black ">{t("title")}</h1>
         <FormItems
           handleAddItem={handleAddItem}
           items={listItems}
@@ -85,10 +85,7 @@ function App() {
               setIsModalOpen={setIsModalOpen}
               isLightMode={isLightMode}
             />
-            <WhatsAppBtn
-              listItems={listItems}
-              isLightMode={isLightMode}
-            />
+            <WhatsAppBtn listItems={listItems} isLightMode={isLightMode} />
           </>
         )}
       </div>
@@ -99,10 +96,7 @@ function App() {
           isLightMode={isLightMode}
         />
       )}
-      <AllDone
-        items={listItems}
-        isLightMode={isLightMode}
-      />
+      <AllDone items={listItems} isLightMode={isLightMode} />
     </div>
   );
 }
