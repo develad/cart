@@ -16,12 +16,14 @@ interface handleItemPressProp {
   items: listItem[];
   handlePress: (id: number, btnState: boolean) => void;
   isLightMode: boolean;
+  direction: "ltr" | "rtl";
 }
 
 interface handleAddItemProps {
   handleAddItem: (name: string, quantity: number) => void;
   items: listItem[];
   isLightMode: boolean;
+  direction: "ltr" | "rtl";
 }
 
 interface handlePressProp {

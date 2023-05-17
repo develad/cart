@@ -11,9 +11,12 @@ i18n.use(initReactI18next).init({
     he: {
       translation: {
         title: "🍪 עגלת קניות",
-        prodcut: "מוצר",
+        product: "מוצר",
         quantity: "כמות",
         productPlaceholder: "לדוגמה: חלב 🥛",
+        quantityPlaceholder: "לדוגמה: 3",
+        addBtn: "הוספה לרשימה",
+        allDone: "הכל הושלם",
       },
     },
     en: {
@@ -22,6 +25,9 @@ i18n.use(initReactI18next).init({
         product: "Product",
         quantity: "Quantity",
         productPlaceholder: "e.g: Milk 🥛",
+        quantityPlaceholder: "e.g: 3",
+        addBtn: "Add to List",
+        allDone: "All Done!",
       },
     },
   },

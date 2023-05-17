@@ -16,8 +16,9 @@ function App() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isLightMode, setIsLightMode] = useState<boolean>(false);
+  const [direction, setDirection] = useState<"ltr" | "rtl">("rtl");
 
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     localStorage.items = JSON.stringify(listItems);
@@ -60,6 +61,11 @@ function App() {
     }
   };
 
+  const changeDirection = () => {
+    setDirection(direction === "ltr" ? "rtl" : "ltr");
+    i18n.changeLanguage(direction === "ltr" ? "he" : "en");
+  };
+
   return (
     <div
       className={`min-h-screen ${
@@ -67,17 +73,25 @@ function App() {
       } flex flex-col items-center justify-between relative`}
     >
       <ToggleSwitch isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
+      <input
+        type="checkbox"
+        id="checkbox"
+        className="toggle-switch top-4 left-[10%]"
+        onChange={changeDirection}
+      />
       <div className="mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] ">
         <h1 className="text-4xl text-center font-black ">{t("title")}</h1>
         <FormItems
           handleAddItem={handleAddItem}
           items={listItems}
           isLightMode={isLightMode}
+          direction={direction}
         />
         <ListItems
           items={listItems}
           handlePress={handlePress}
           isLightMode={isLightMode}
+          direction={direction}
         />
         {listItems.length !== 0 && (
           <>
