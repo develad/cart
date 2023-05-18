@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { listItem } from "./types/listTypes";
-import ListItems from "./components/ListItems";
-import FormItems from "./components/FormItems";
-import TrashBtn from "./components/TrashBtn";
-import AllDone from "./components/AllDone";
-import Modal from "./components/Modal";
-import ToggleSwitch from "./components/ToggleSwitch";
-import WhatsAppBtn from "./components/WhatsAppBtn";
+import {
+  ListItems,
+  FormItems,
+  TrashBtn,
+  AllDone,
+  Modal,
+  ToggleSwitch,
+  WhatsAppBtn,
+} from "./components";
 import { useTranslation } from "react-i18next";
 import israelFlag from "./assets/Israel_flag.svg";
 import usUKFlag from "./assets/us_uk_flag.svg";
