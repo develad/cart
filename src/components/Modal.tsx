@@ -1,35 +1,46 @@
-import cat from '../assets/cat_2.gif';
-import { listItem } from '../types/listTypes';
+import cat from "../assets/cat_2.gif";
+import { listItem } from "../types/listTypes";
 
 interface modalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setListItems: React.Dispatch<React.SetStateAction<listItem[]>>;
   isLightMode: boolean;
+  handleEditList: ({
+    shouldKeepEditing,
+  }: {
+    shouldKeepEditing?: boolean;
+  }) => void;
 }
 
-const Modal = ({ setIsModalOpen, setListItems, isLightMode }: modalProps) => {
+const Modal = ({
+  setIsModalOpen,
+  setListItems,
+  isLightMode,
+  handleEditList,
+}: modalProps) => {
   const handleClear = () => {
     setListItems([]);
     setIsModalOpen(false);
+    handleEditList({ shouldKeepEditing: false });
   };
 
   return (
     <div
-      dir='rtl'
-      className='absolute top-0 left-0 right-0 bottom-0 bg-black/80 z-50 flex items-center justify-center min-h-screen'
+      dir="rtl"
+      className="absolute top-0 left-0 right-0 bottom-0 bg-black/80 z-50 flex items-center justify-center min-h-screen"
     >
       <div
         className={`w-5/6 md:w-[500px] h-[500px] border-4 ${
           isLightMode
-            ? 'border-gray-950 bg-green-400'
-            : 'border-white bg-zinc-700'
+            ? "border-gray-950 bg-green-400"
+            : "border-white bg-zinc-700"
         } rounded-3xl  flex flex-col items-center p-16`}
       >
-        <p className='text-4xl font-black text-center mb-8'>למחוק את הרשימה?</p>
-        <div className='flex items-center gap-4 md:gap-8 w-full mb-16'>
+        <p className="text-4xl font-black text-center mb-8">למחוק את הרשימה?</p>
+        <div className="flex items-center gap-4 md:gap-8 w-full mb-16">
           <button
             className={`rounded bg-red-400 font-bold p-2 flex-1 ${
-              isLightMode ? 'border-4 border-gray-950' : ''
+              isLightMode ? "border-4 border-gray-950" : ""
             }`}
             onClick={handleClear}
           >
@@ -37,17 +48,14 @@ const Modal = ({ setIsModalOpen, setListItems, isLightMode }: modalProps) => {
           </button>
           <button
             className={`rounded bg-cyan-400 font-bold p-2 flex-1 ${
-              isLightMode ? 'border-4 border-gray-950' : ''
+              isLightMode ? "border-4 border-gray-950" : ""
             }`}
             onClick={() => setIsModalOpen(false)}
           >
             סגור
           </button>
         </div>
-        <img
-          src={cat}
-          className='w-[150px] md:w-[250px]'
-        />
+        <img src={cat} className="w-[150px] md:w-[250px]" />
       </div>
     </div>
   );

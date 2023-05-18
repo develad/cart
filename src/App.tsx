@@ -7,7 +7,7 @@ import AllDone from "./components/AllDone";
 import Modal from "./components/Modal";
 import ToggleSwitch from "./components/ToggleSwitch";
 import EditBtn from "./components/EditBtn";
-import WhatsAppBtn from './components/WhatsAppBtn';
+import WhatsAppBtn from "./components/WhatsAppBtn";
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
@@ -68,8 +68,12 @@ function App() {
     }
   };
 
-  const handleEditList = () => {
-    setIsEditing(!isEditing);
+  const handleEditList = ({
+    shouldKeepEditing,
+  }: {
+    shouldKeepEditing?: boolean;
+  }) => {
+    setIsEditing(shouldKeepEditing || !isEditing);
     setEditItem(null);
   };
 
@@ -109,16 +113,12 @@ function App() {
         />
         {listItems.length !== 0 && (
           <>
-            <>
             <TrashBtn
-                setIsModalOpen={setIsModalOpen}
-                isLightMode={isLightMode}
-              />
-            <WhatsAppBtn
-              listItems={listItems}
+              setIsModalOpen={setIsModalOpen}
               isLightMode={isLightMode}
             />
-          </>
+            <WhatsAppBtn listItems={listItems} isLightMode={isLightMode} />
+
             <EditBtn
               handleEditList={handleEditList}
               isLightMode={isLightMode}
@@ -132,6 +132,7 @@ function App() {
           setIsModalOpen={setIsModalOpen}
           setListItems={setListItems}
           isLightMode={isLightMode}
+          handleEditList={handleEditList}
         />
       )}
       <AllDone items={listItems} isLightMode={isLightMode} />
