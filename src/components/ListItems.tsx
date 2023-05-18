@@ -15,6 +15,7 @@ const ListItems: React.FC<handleItemPressProp> = ({
           item={item}
           isLightMode={isLightMode}
           handlePress={handlePress}
+          direction={direction}
         />
       ))}
     </ul>

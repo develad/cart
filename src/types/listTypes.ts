@@ -30,6 +30,7 @@ interface handlePressProp {
   handlePress: (id: number, btnState: boolean) => void;
   item: listItem;
   isLightMode: boolean;
+  direction: "ltr" | "rtl";
 }
 
 export type {

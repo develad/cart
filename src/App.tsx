@@ -117,6 +117,7 @@ function App() {
           setIsModalOpen={setIsModalOpen}
           setListItems={setListItems}
           isLightMode={isLightMode}
+          direction={direction}
         />
       )}
       <AllDone items={listItems} isLightMode={isLightMode} />

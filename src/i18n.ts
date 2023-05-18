@@ -30,7 +30,7 @@ i18n.use(initReactI18next).init({
         productPlaceholder: "e.g: Milk 🥛",
         quantityPlaceholder: "e.g: 3",
         addBtn: "Add to List",
-        modalText: "?Delete the list",
+        modalText: "Delete the list?",
         closeBtn: "Close",
         deleteBtn: "Delete",
         allDone: "All Done!",

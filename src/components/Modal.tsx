@@ -6,9 +6,15 @@ interface modalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setListItems: React.Dispatch<React.SetStateAction<listItem[]>>;
   isLightMode: boolean;
+  direction: "ltr" | "rtl";
 }
 
-const Modal = ({ setIsModalOpen, setListItems, isLightMode }: modalProps) => {
+const Modal = ({
+  setIsModalOpen,
+  setListItems,
+  isLightMode,
+  direction,
+}: modalProps) => {
   const handleClear = () => {
     setListItems([]);
     setIsModalOpen(false);
@@ -18,7 +24,7 @@ const Modal = ({ setIsModalOpen, setListItems, isLightMode }: modalProps) => {
 
   return (
     <div
-      dir="rtl"
+      dir={direction}
       className="absolute top-0 left-0 right-0 bottom-0 bg-black/80 z-50 flex items-center justify-center min-h-screen"
     >
       <div
