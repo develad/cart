@@ -4,6 +4,7 @@ import { handleAddItemProps } from "../types/listTypes";
 function FormItems({
   handleAddItem,
   handleEditItem,
+  handleDeleteItem,
   items,
   isLightMode,
   isEditing,
@@ -73,15 +74,38 @@ function FormItems({
         required
         disabled={isEditing && !editItem}
       />
-      <button
-        type="submit"
-        className={`rounded ${
-          isLightMode ? "bg-yellow-400" : "bg-cyan-400"
-        } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
-        disabled={name.trim().length === 0}
-      >
-        {!isEditing ? "הוספה לרשימה" : "ערוך פריט"}
-      </button>
+      {!isEditing ? (
+        <button
+          type="submit"
+          className={`rounded ${
+            isLightMode ? "bg-yellow-400" : "bg-cyan-400"
+          } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+          disabled={name.trim().length === 0}
+        >
+          {"הוספה לרשימה"}
+        </button>
+      ) : (
+        <div className="flex justify-between gap-4 w-full mt-4">
+          <button
+            type="submit"
+            className={`rounded w-1/2  ${
+              isLightMode ? "bg-yellow-400" : "bg-cyan-400"
+            } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+            disabled={name.trim().length === 0}
+          >
+            {"ערוך פריט"}
+          </button>
+          <button
+            type="button"
+            className={`rounded w-1/2 bg-red-400
+             font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+            disabled={name.trim().length === 0}
+            onClick={handleDeleteItem}
+          >
+            {"מחק פריט"}
+          </button>
+        </div>
+      )}
     </form>
   );
 }

@@ -23,6 +23,7 @@ interface handleItemPressProp {
 interface handleAddItemProps {
   handleAddItem: (name: string, quantity: number) => void;
   handleEditItem: (name: string, quantity: number) => void;
+  handleDeleteItem: () => void;
   items: listItem[];
   isLightMode: boolean;
   isEditing: boolean;

@@ -89,6 +89,13 @@ function App() {
     setEditItem(null);
   };
 
+  const handleDeleteItem = () => {
+    const updatedList = listItems.filter((item) => item.id !== editItem?.id);
+    setListItems(updatedList);
+    setEditItem(null);
+    if (updatedList.length === 0) setIsEditing(false);
+  };
+
   return (
     <div
       className={`min-h-screen ${
@@ -101,6 +108,7 @@ function App() {
         <FormItems
           handleAddItem={handleAddItem}
           handleEditItem={handleEditItem}
+          handleDeleteItem={handleDeleteItem}
           items={listItems}
           isLightMode={isLightMode}
           isEditing={isEditing}
