@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { listItem } from "./types/listTypes";
-import ListItems from "./components/ListItems";
-import FormItems from "./components/FormItems";
-import TrashBtn from "./components/TrashBtn";
-import AllDone from "./components/AllDone";
-import Modal from "./components/Modal";
-import ToggleSwitch from "./components/ToggleSwitch";
-import EditBtn from "./components/EditBtn";
-import WhatsAppBtn from "./components/WhatsAppBtn";
+import {
+  ListItems,
+  FormItems,
+  TrashBtn,
+  AllDone,
+  Modal,
+  ToggleSwitch,
+  WhatsAppBtn,
+  EditBtn,
+} from "./components";
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
