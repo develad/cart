@@ -75,9 +75,12 @@ function App() {
   }: {
     shouldKeepEditing?: boolean;
   }) => {
-    setIsEditing(shouldKeepEditing || !isEditing);
+    setIsEditing(
+      typeof shouldKeepEditing === "boolean" ? shouldKeepEditing : !isEditing
+    );
     setEditItem(null);
   };
+
 
   const handleEditItem = (name: string, quantity: number) => {
     const updatedList = listItems.map((item) =>
