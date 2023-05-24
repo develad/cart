@@ -1,30 +1,47 @@
-import { useState, useEffect } from "react";
-import { listItem } from "./types/listTypes";
+import { useState, useEffect } from 'react';
+import { listItem } from './types/listTypes';
 import {
   ListItems,
   FormItems,
   TrashBtn,
   AllDone,
   Modal,
-  ToggleSwitch,
   WhatsAppBtn,
-} from "./components";
+} from './components';
+import { useTranslation } from 'react-i18next';
+import ToggleBox from './components/ToggleBox';
 
 function App() {
   const [listItems, setListItems] = useState<listItem[]>(
-    localStorage.items ? JSON.parse(localStorage.items) : []
+    localStorage.items ? JSON.parse(localStorage.items) : [],
   );
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isLightMode, setIsLightMode] = useState<boolean>(false);
+  const [isLightMode, setIsLightMode] = useState<boolean>(
+    localStorage.isLightMode ? JSON.parse(localStorage.isLightMode) : false,
+  );
+  const [direction, setDirection] = useState<'ltr' | 'rtl'>(
+    localStorage.direction ? JSON.parse(localStorage.direction) : 'rtl',
+  );
+
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     localStorage.items = JSON.stringify(listItems);
   }, [listItems]);
 
+  useEffect(() => {
+    localStorage.direction = JSON.stringify(direction);
+    i18n.changeLanguage(direction === 'rtl' ? 'he' : 'en');
+  }, [direction]);
+
+  useEffect(() => {
+    localStorage.isLightMode = JSON.stringify(isLightMode);
+  }, [isLightMode]);
+
   const handlePress = (id: number, btnState: boolean) => {
     const arr = listItems.map((item) =>
-      item.id === id ? { ...item, isChecked: btnState } : item
+      item.id === id ? { ...item, isChecked: btnState } : item,
     );
     setListItems(arr);
   };
@@ -32,7 +49,7 @@ function App() {
   const handleAddItem = (name: string, quantity: number) => {
     const itemIndex = listItems.findIndex(
       (itemName) =>
-        itemName.name.trim().toLowerCase() === name.trim().toLowerCase()
+        itemName.name.trim().toLowerCase() === name.trim().toLowerCase(),
     );
     if (itemIndex === -1) {
       setListItems((prev) => [
@@ -59,24 +76,35 @@ function App() {
     }
   };
 
+  const changeDirection = () => {
+    setDirection(direction === 'ltr' ? 'rtl' : 'ltr');
+  };
+
   return (
     <div
       className={`min-h-screen ${
-        isLightMode ? "text-gray-950  bg-[wheat]" : "bg-zinc-800  text-white"
-      } flex flex-col items-center justify-between relative`}
+        isLightMode ? 'text-gray-950  bg-[wheat]' : 'bg-zinc-800  text-white'
+      } flex flex-col items-center flex-1 relative`}
     >
-      <ToggleSwitch isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
-      <div className="mx-auto container px-4 pt-16 mb-[60px] pb-[60px] md:w-[600px] ">
-        <h1 className="text-4xl text-center font-black ">🍪 עגלת קניות</h1>
+      <ToggleBox
+        changeDirection={changeDirection}
+        isLightMode={isLightMode}
+        setIsLightMode={setIsLightMode}
+        direction={direction}
+      />
+      <div className='mx-auto container px-4 pt-4 mb-[60px] pb-[60px] md:w-[600px] '>
+        <h1 className='text-4xl text-center font-black '>{t('title')}</h1>
         <FormItems
           handleAddItem={handleAddItem}
           items={listItems}
           isLightMode={isLightMode}
+          direction={direction}
         />
         <ListItems
           items={listItems}
           handlePress={handlePress}
           isLightMode={isLightMode}
+          direction={direction}
         />
         {listItems.length !== 0 && (
           <>
@@ -84,7 +112,10 @@ function App() {
               setIsModalOpen={setIsModalOpen}
               isLightMode={isLightMode}
             />
-            <WhatsAppBtn listItems={listItems} isLightMode={isLightMode} />
+            <WhatsAppBtn
+              listItems={listItems}
+              isLightMode={isLightMode}
+            />
           </>
         )}
       </div>
@@ -93,9 +124,13 @@ function App() {
           setIsModalOpen={setIsModalOpen}
           setListItems={setListItems}
           isLightMode={isLightMode}
+          direction={direction}
         />
       )}
-      <AllDone items={listItems} isLightMode={isLightMode} />
+      <AllDone
+        items={listItems}
+        isLightMode={isLightMode}
+      />
     </div>
   );
 }

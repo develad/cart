@@ -20,8 +20,6 @@
     outline: none;
     border-radius: 2rem;
     cursor: pointer;
-    /* box-shadow: inset 0 0 5px rgb(0 0 0 / 50%); */
-    transition: 1s ease all;
   }
 
   .toggle-switch::before {
@@ -33,7 +31,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 0.5s;
+    transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +46,42 @@
 
   .toggle-switch:checked {
     background: #4ade80;
-    transition: 1s ease all;
+  }
+  .lang-switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ccc;
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+  }
+
+  .lang-switch::before {
+    content: url('./assets/CircleFlagsIl.svg');
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7px;
+  }
+
+  .lang-switch:checked::before {
+    transform: translateX(100%);
+    background: #fff;
+    content: url('./assets/CircleFlagsUk.svg');
+  }
+
+  .lang-switch:checked {
+    background: #4ade80;
   }
 }

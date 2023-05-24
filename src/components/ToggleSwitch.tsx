@@ -7,7 +7,7 @@ const ToggleSwitch = ({ isLightMode, setIsLightMode }: toggleProps) => {
   return (
     <input
       type='checkbox'
-      className='toggle-switch absolute top-4 left-[50%] -translate-x-1/2'
+      className='toggle-switch'
       checked={isLightMode}
       onChange={() => setIsLightMode(!isLightMode)}
     />
