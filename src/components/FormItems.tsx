@@ -96,7 +96,7 @@ function FormItems({
             } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
             disabled={name.trim().length === 0}
           >
-            {"ערוך פריט"}
+            {t("formEditBtn")}
           </button>
           <button
             type="button"
@@ -105,7 +105,7 @@ function FormItems({
             disabled={name.trim().length === 0}
             onClick={handleDeleteItem}
           >
-            {"מחק פריט"}
+            {t("formDeleteBtn")}
           </button>
         </div>
       )}
