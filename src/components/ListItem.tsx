@@ -27,12 +27,15 @@ const ListItem: React.FC<handlePressProp> = ({
         } ${editItem?.id === item.id && "bg-orange-400"} cursor-pointer`}
         style={{ width: "30px", height: "30px" }}
       />
-      <p className="font-black flex-1" dir="ltr">
+      <p
+        className={`font-black flex-1 ${
+          editItem && editItem?.id !== item.id && "opacity-50"
+        } `}
+        dir="ltr"
+      >
         {direction === "rtl"
           ? `${item.quantity} x ${item.name}`
-          : `${item.name} x ${item.quantity}`} ${
-            editItem && editItem?.id !== item.id && "opacity-50"
-          }
+          : `${item.name} x ${item.quantity}`}
       </p>
     </li>
   );

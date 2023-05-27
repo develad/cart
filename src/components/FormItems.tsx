@@ -54,12 +54,13 @@ function FormItems({
       <input
         type="text"
         id="name"
-        placeholder={t("productPlaceholder") || ""}
+        placeholder={(!isEditing && t("productPlaceholder")) || ""}
         onChange={(e) => setName(e.target.value)}
         className="rounded py-1 px-2 text-black outline-yellow-300 text-lg"
         value={name}
         ref={textRef}
         required
+        disabled={isEditing && !editItem}
       />
       <label htmlFor="quantity" className="font-bold text-lg">
         {t("quantity")}
