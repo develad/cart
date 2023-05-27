@@ -7,9 +7,10 @@ const ListItems: React.FC<handleItemPressProp> = ({
   handlePress,
   isEditing,
   editItem,
+  direction,
 }) => {
   return (
-    <ul dir="rtl">
+    <ul dir={direction}>
       {items.map((item) => (
         <ListItem
           key={item.id}
@@ -18,6 +19,7 @@ const ListItems: React.FC<handleItemPressProp> = ({
           handlePress={handlePress}
           isEditing={isEditing}
           editItem={editItem}
+          direction={direction}
         />
       ))}
     </ul>
