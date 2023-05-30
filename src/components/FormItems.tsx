@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { handleAddItemProps } from "../types/listTypes";
+import { useTranslation } from "react-i18next";
 
 function FormItems({
   handleAddItem,
@@ -9,10 +10,12 @@ function FormItems({
   isLightMode,
   isEditing,
   editItem,
+  direction,
 }: handleAddItemProps) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  const { t } = useTranslation();
   const textRef = useRef<HTMLInputElement>(null);
 
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
@@ -37,7 +40,7 @@ function FormItems({
 
   return (
     <form
-      dir="rtl"
+      dir={direction}
       onSubmit={handleSubmit}
       className={`w-11/12  h-60 ${
         isLightMode
@@ -46,29 +49,29 @@ function FormItems({
       } rounded-2xl p-4 flex flex-col justify-between mt-4 mb-8 mx-auto border-4`}
     >
       <label htmlFor="name" className="font-bold text-lg">
-        מוצר
+        {t("product")}
       </label>
       <input
-        disabled={isEditing && !editItem}
         type="text"
         id="name"
-        placeholder={isEditing ? "בחר פריט מהרשימה" : "לדוגמה: חלב 🥛"}
+        placeholder={(!isEditing && t("productPlaceholder")) || ""}
         onChange={(e) => setName(e.target.value)}
         className="rounded py-1 px-2 text-black outline-yellow-300 text-lg"
         value={name}
         ref={textRef}
         required
+        disabled={isEditing && !editItem}
       />
       <label htmlFor="quantity" className="font-bold text-lg">
-        כמות
+        {t("quantity")}
       </label>
       <input
         type="number"
         id="quantity"
-        placeholder={"לדוגמה: 3"}
+        placeholder="לדוגמה: 3"
         onChange={(e) => setQuantity(e.currentTarget.valueAsNumber)}
         className="rounded py-1 px-2 text-black outline-yellow-300 text-lg"
-        value={isEditing && !editItem ? 0 : quantity}
+        value={quantity}
         min="1"
         max="9999999"
         required
@@ -82,7 +85,7 @@ function FormItems({
           } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
           disabled={name.trim().length === 0}
         >
-          {"הוספה לרשימה"}
+          {t("addBtn")}
         </button>
       ) : (
         <div className="flex justify-between gap-4 w-full mt-4">
@@ -93,7 +96,7 @@ function FormItems({
             } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
             disabled={name.trim().length === 0}
           >
-            {"ערוך פריט"}
+            {t("formEditBtn")}
           </button>
           <button
             type="button"
@@ -102,7 +105,7 @@ function FormItems({
             disabled={name.trim().length === 0}
             onClick={handleDeleteItem}
           >
-            {"מחק פריט"}
+            {t("formDeleteBtn")}
           </button>
         </div>
       )}

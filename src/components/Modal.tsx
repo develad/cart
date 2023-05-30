@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import cat from "../assets/cat_2.gif";
 import { listItem } from "../types/listTypes";
 
@@ -5,28 +6,28 @@ interface modalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setListItems: React.Dispatch<React.SetStateAction<listItem[]>>;
   isLightMode: boolean;
-  handleEditList: ({
-    shouldKeepEditing,
-  }: {
-    shouldKeepEditing?: boolean;
-  }) => void;
+  direction: "ltr" | "rtl";
+  handleEditList: (shouldKeepEditing?: boolean) => void;
 }
 
 const Modal = ({
   setIsModalOpen,
   setListItems,
   isLightMode,
+  direction,
   handleEditList,
 }: modalProps) => {
   const handleClear = () => {
     setListItems([]);
     setIsModalOpen(false);
-    handleEditList({ shouldKeepEditing: false });
+    handleEditList(false);
   };
+
+  const { t } = useTranslation();
 
   return (
     <div
-      dir="rtl"
+      dir={direction}
       className="absolute top-0 left-0 right-0 bottom-0 bg-black/80 z-50 flex items-center justify-center min-h-screen"
     >
       <div
@@ -36,7 +37,7 @@ const Modal = ({
             : "border-white bg-zinc-700"
         } rounded-3xl  flex flex-col items-center p-16`}
       >
-        <p className="text-4xl font-black text-center mb-8">למחוק את הרשימה?</p>
+        <p className="text-4xl font-black text-center mb-8">{t("modalText")}</p>
         <div className="flex items-center gap-4 md:gap-8 w-full mb-16">
           <button
             className={`rounded bg-red-400 font-bold p-2 flex-1 ${
@@ -44,7 +45,7 @@ const Modal = ({
             }`}
             onClick={handleClear}
           >
-            מחק
+            {t("deleteBtn")}
           </button>
           <button
             className={`rounded bg-cyan-400 font-bold p-2 flex-1 ${
@@ -52,7 +53,7 @@ const Modal = ({
             }`}
             onClick={() => setIsModalOpen(false)}
           >
-            סגור
+            {t("closeBtn")}
           </button>
         </div>
         <img src={cat} className="w-[150px] md:w-[250px]" />

@@ -18,6 +18,7 @@ interface handleItemPressProp {
   isLightMode: boolean;
   isEditing: boolean;
   editItem: listItem | null;
+  direction: "ltr" | "rtl";
 }
 
 interface handleAddItemProps {
@@ -28,6 +29,7 @@ interface handleAddItemProps {
   isLightMode: boolean;
   isEditing: boolean;
   editItem: listItem | null;
+  direction: "ltr" | "rtl";
 }
 
 interface handlePressProp {
@@ -36,6 +38,7 @@ interface handlePressProp {
   isLightMode: boolean;
   isEditing: boolean;
   editItem: listItem | null;
+  direction: "ltr" | "rtl";
 }
 
 export type {
