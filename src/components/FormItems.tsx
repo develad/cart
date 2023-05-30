@@ -4,8 +4,12 @@ import { useTranslation } from "react-i18next";
 
 function FormItems({
   handleAddItem,
+  handleEditItem,
+  handleDeleteItem,
   items,
   isLightMode,
+  isEditing,
+  editItem,
   direction,
 }: handleAddItemProps) {
   const [name, setName] = useState("");
@@ -24,10 +28,15 @@ function FormItems({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleAddItem(name, quantity);
+    isEditing ? handleEditItem(name, quantity) : handleAddItem(name, quantity);
     setName("");
     setQuantity(1);
   };
+
+  useEffect(() => {
+    setName(editItem ? editItem.name : "");
+    setQuantity(editItem ? editItem.quantity : 1);
+  }, [editItem]);
 
   return (
     <form
@@ -45,12 +54,13 @@ function FormItems({
       <input
         type="text"
         id="name"
-        placeholder={t("productPlaceholder") || ""}
+        placeholder={(!isEditing && t("productPlaceholder")) || ""}
         onChange={(e) => setName(e.target.value)}
         className="rounded py-1 px-2 text-black outline-yellow-300 text-lg"
         value={name}
         ref={textRef}
         required
+        disabled={isEditing && !editItem}
       />
       <label htmlFor="quantity" className="font-bold text-lg">
         {t("quantity")}
@@ -65,16 +75,40 @@ function FormItems({
         min="1"
         max="9999999"
         required
+        disabled={isEditing && !editItem}
       />
-      <button
-        type="submit"
-        className={`rounded ${
-          isLightMode ? "bg-yellow-400" : "bg-cyan-400"
-        } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
-        disabled={name.trim().length === 0}
-      >
-        {t("addBtn")}
-      </button>
+      {!isEditing ? (
+        <button
+          type="submit"
+          className={`rounded ${
+            isLightMode ? "bg-yellow-400" : "bg-cyan-400"
+          } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+          disabled={name.trim().length === 0}
+        >
+          {t("addBtn")}
+        </button>
+      ) : (
+        <div className="flex justify-between gap-4 w-full mt-4">
+          <button
+            type="submit"
+            className={`rounded w-1/2  ${
+              isLightMode ? "bg-yellow-400" : "bg-cyan-400"
+            } font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+            disabled={name.trim().length === 0}
+          >
+            {t("formEditBtn")}
+          </button>
+          <button
+            type="button"
+            className={`rounded w-1/2 bg-red-400
+             font-bold p-2 mt-4 text-lg disabled:opacity-50`}
+            disabled={name.trim().length === 0}
+            onClick={handleDeleteItem}
+          >
+            {t("formDeleteBtn")}
+          </button>
+        </div>
+      )}
     </form>
   );
 }

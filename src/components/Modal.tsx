@@ -7,6 +7,7 @@ interface modalProps {
   setListItems: React.Dispatch<React.SetStateAction<listItem[]>>;
   isLightMode: boolean;
   direction: "ltr" | "rtl";
+  handleEditList: (shouldKeepEditing?: boolean) => void;
 }
 
 const Modal = ({
@@ -14,10 +15,12 @@ const Modal = ({
   setListItems,
   isLightMode,
   direction,
+  handleEditList,
 }: modalProps) => {
   const handleClear = () => {
     setListItems([]);
     setIsModalOpen(false);
+    handleEditList(false);
   };
 
   const { t } = useTranslation();

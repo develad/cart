@@ -5,6 +5,8 @@ const ListItems: React.FC<handleItemPressProp> = ({
   items,
   isLightMode,
   handlePress,
+  isEditing,
+  editItem,
   direction,
 }) => {
   return (
@@ -15,6 +17,8 @@ const ListItems: React.FC<handleItemPressProp> = ({
           item={item}
           isLightMode={isLightMode}
           handlePress={handlePress}
+          isEditing={isEditing}
+          editItem={editItem}
           direction={direction}
         />
       ))}

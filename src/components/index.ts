@@ -5,3 +5,4 @@ export { default as AllDone } from "./AllDone";
 export { default as Modal } from "./Modal";
 export { default as ToggleSwitch } from "./ToggleSwitch";
 export { default as WhatsAppBtn } from "./WhatsAppBtn";
+export { default as EditBtn } from "./EditBtn";
